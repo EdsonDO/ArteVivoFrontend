@@ -1,0 +1,65 @@
+<!-- CONTENEDOR PRINCIPAL -->
+<div class="body">
+
+  <!-- MENÚ LATERAL -->
+  <div class="part1" [class.colapsado]="menuColapsado">
+
+    <!-- CONTENEDOR DEL MENÚ (TARJETA) -->
+    <div class="menu-box">
+
+      <!-- BOTÓN DE COLAPSO DEL MENÚ (AHORA DENTRO DEL RECTÁNGULO) -->
+      <div class="toggle-button" (click)="toggleMenu()" [class.show-lines]="menuColapsado">
+        <img src="/LogoSmall.png" alt="Toggle Menu" class="logo" />
+        <div class="menu-lines"></div>
+      </div>
+
+      <!-- LOGO -->
+      <div class="Logo fade-in-out" *ngIf="!menuColapsado">
+        <div class="Icon">
+          <img src="/Logo.png" alt="Logo" height="50px" width="200px" />
+        </div>
+      </div>
+
+      <!-- BOTONES DE NAVEGACIÓN -->
+      <div class="Botones">
+
+        <!-- Botones normales (cuando no está colapsado) -->
+        <div class="B-Redirec" *ngIf="!menuColapsado">
+          <button (click)="redireccionar('/lobby')">Inicio</button>
+          <button>Reservar</button>
+          <button>Reservas</button>
+          <button>Cuenta</button>
+        </div>
+
+        <!-- Botones compactos (cuando está colapsado) -->
+        <div class="B-Redirec-compacto" *ngIf="menuColapsado">
+          <div class="mini-btn" title="Inicio">
+            <img [class.spin]="menuColapsado" src="/modulosImagen.jpg" alt="Inicio" />
+          </div>
+          <div class="mini-btn" title="Reservar">
+            <img [class.spin]="menuColapsado" src="/progresoImagen.jpg" alt="Reservar" />
+          </div>
+          <div class="mini-btn" title="Reservas">
+            <img [class.spin]="menuColapsado" src="/rankingImagen.jpg" alt="Reservas" />
+          </div>
+          <div class="mini-btn" title="Cuenta">
+            <img [class.spin]="menuColapsado" src="/cuentaImagen.jpg" alt="Cuenta" />
+          </div>
+        </div>
+
+        <!-- Botón de Cerrar Sesión -->
+        <div class="B-Salir fade-in-out" *ngIf="!menuColapsado">
+          <button>Cerrar Sesión</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <div class="content">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+
+<!-- By Edson DO. -->
