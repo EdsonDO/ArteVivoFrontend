@@ -20,4 +20,14 @@ export class AppComponent {
   toggleMenu() {
     this.menuColapsado = !this.menuColapsado;
   }
+  mostrarFormularioReservar = false;
+
+abrirFormularioReservar() {
+  this.mostrarFormularioReservar = true;
+}
+
+cerrarFormularioReservar() {
+  this.mostrarFormularioReservar = false;
+}
+
 }
