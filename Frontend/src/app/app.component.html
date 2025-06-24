@@ -28,9 +28,10 @@
         <!-- Botones normales (cuando no está colapsado) -->
         <div class="B-Redirec" *ngIf="!menuColapsado">
           <button (click)="redireccionar('/lobby')">Inicio</button>
-          <button>Reservar</button>
+          <button (click)="abrirFormularioReservar()">Reservar</button>
           <button>Reservas</button>
           <button>Cuenta</button>
+          <button>Salir</button>
         </div>
 
         <!-- Botones compactos (cuando está colapsado) -->
@@ -38,7 +39,7 @@
           <div class="mini-btn" title="Inicio">
             <img [class.spin]="menuColapsado" src="/LogoInicio.png" alt="Inicio" />
           </div>
-          <div class="mini-btn" title="Reservar">
+          <div class="mini-btn" title="Reservar" (click)="abrirFormularioReservar()">
             <img [class.spin]="menuColapsado" src="/LogoReservar.png" alt="Reservar" />
           </div>
           <div class="mini-btn" title="Reservas">
@@ -47,12 +48,12 @@
           <div class="mini-btn" title="Cuenta">
             <img [class.spin]="menuColapsado" src="/LogoCuenta.png" alt="Cuenta" />
           </div>
+          <div class="mini-btn" title="Salir">
+            <img [class.spin]="menuColapsado" src="/LogoSalir.png" alt="Salir" />
+          </div>
         </div>
 
-        <!-- Botón de Cerrar Sesión -->
-        <div class="B-Salir fade-in-out" *ngIf="!menuColapsado">
-          <button>Cerrar Sesión</button>
-        </div>
+       
       
       </div>
     </div>
@@ -64,5 +65,26 @@
     <router-outlet></router-outlet>
   </div>
 </div>
+
+<!-- FORMULARIO DE RESERVA DESLIZABLE -->
+<div *ngIf="mostrarFormularioReservar" class="form-slide-wrapper">
+  <div class="form-card">
+    <h2>Reservar una cita</h2>
+    <form>
+      <label>Nombre:</label>
+      <input type="text" />
+
+      <label>Fecha:</label>
+      <input type="date" />
+
+      <label>Hora:</label>
+      <input type="time" />
+
+      <button type="submit">Enviar</button>
+      <button type="button" (click)="cerrarFormularioReservar()">Cerrar</button>
+    </form>
+  </div>
+</div>
+
 
 <!-- By Edson DO. -->
