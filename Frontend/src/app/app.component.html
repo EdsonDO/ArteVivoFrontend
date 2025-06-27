@@ -1,21 +1,20 @@
+
 <!-- CONTENEDOR PRINCIPAL -->
 <div class="body">
 
   <!-- MENÚ LATERAL -->
   <div class="part1" [class.colapsado]="menuColapsado">
 
-    <!-- CONTENEDOR DEL MENÚ (TARJETA) -->
+    <!-- CONTENEDOR DEL MENÚ -->
     <div class="menu-box" [class.expanded]="!menuColapsado">
-     
-      <!-- BOTÓN DE COLAPSO DEL MENÚ (AHORA DENTRO DEL RECTÁNGULO) -->
+      
+      <!-- BOTÓN DE COLAPSO -->
       <div class="toggle-button" (click)="toggleMenu()" [class.show-lines]="menuColapsado">
         <img src="/LogoSmall.png" alt="Toggle Menu" class="logo" />
         <div class="menu-lines"></div>
       </div>
- 
 
-     
-      <!-- LOGO -->
+      <!-- LOGO EXPANDIDO -->
       <div class="Logo fade-in-out" *ngIf="!menuColapsado">
         <div class="Icon">
           <img src="/Logo.png" alt="Logo" height="100px" width="235px" />
@@ -24,41 +23,34 @@
 
       <!-- BOTONES DE NAVEGACIÓN -->
       <div class="Botones">
-
-        <!-- Botones normales (cuando no está colapsado) -->
         <div class="B-Redirec" *ngIf="!menuColapsado">
-          <button (click)="redireccionar('/lobby')">Inicio</button>
-          <button (click)="abrirFormularioReservar()">Reservar</button>
-          <button>Reservas</button>
-          <button>Cuenta</button>
-          <button>Salir</button>
+          <button (click)="redireccionar('/inicio')">Inicio</button>
+          <button (click)="redireccionar('/reservar')">Reservar</button>
+          <button (click)="redireccionar('/reservas')">Reservas</button>
+          <button (click)="redireccionar('/cuenta')">Cuenta</button>
+          <button (click)="redireccionar('/login')">Salir</button>
         </div>
 
-        <!-- Botones compactos (cuando está colapsado) -->
         <div class="B-Redirec-compacto" *ngIf="menuColapsado">
-          <div class="mini-btn" title="Inicio">
+          <div class="mini-btn" title="Inicio" (click)="redireccionar('/')">
             <img [class.spin]="menuColapsado" src="/LogoInicio.png" alt="Inicio" />
           </div>
-          <div class="mini-btn" title="Reservar" (click)="abrirFormularioReservar()">
+          <div class="mini-btn" title="Reservar" (click)="redireccionar('/reservar')">
             <img [class.spin]="menuColapsado" src="/LogoReservar.png" alt="Reservar" />
           </div>
-          <div class="mini-btn" title="Reservas">
+          <div class="mini-btn" title="Reservas" (click)="redireccionar('/reservas')">
             <img [class.spin]="menuColapsado" src="/LogoReservas.png" alt="Reservas" />
           </div>
-          <div class="mini-btn" title="Cuenta">
+          <div class="mini-btn" title="Cuenta" (click)="redireccionar('/cuenta')">
             <img [class.spin]="menuColapsado" src="/LogoCuenta.png" alt="Cuenta" />
           </div>
-          <div class="mini-btn" title="Salir">
+          <div class="mini-btn" title="Salir" (click)="redireccionar('/login')">
             <img [class.spin]="menuColapsado" src="/LogoSalir.png" alt="Salir" />
           </div>
         </div>
-
-       
-      
       </div>
     </div>
   </div>
- 
 
   <!-- CONTENIDO PRINCIPAL -->
   <div class="content">
@@ -66,25 +58,7 @@
   </div>
 </div>
 
-<!-- FORMULARIO DE RESERVA DESLIZABLE -->
-<div *ngIf="mostrarFormularioReservar" class="form-slide-wrapper">
-  <div class="form-card">
-    <h2>Reservar una cita</h2>
-    <form>
-      <label>Nombre:</label>
-      <input type="text" />
-
-      <label>Fecha:</label>
-      <input type="date" />
-
-      <label>Hora:</label>
-      <input type="time" />
-
-      <button type="submit">Enviar</button>
-      <button type="button" (click)="cerrarFormularioReservar()">Cerrar</button>
-    </form>
-  </div>
-</div>
-
-
 <!-- By Edson DO. -->
+
+
+<!-- Segunda corrección: Todo esto del appcomponent tiene que ir SOLO en un inicio, NO en el appcomponent. -->

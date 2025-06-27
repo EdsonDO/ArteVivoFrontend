@@ -1,0 +1,12 @@
+
+
+:host {
+  display: block;
+  min-height: 100vh;
+
+  background-image: url('/BackgroundArtevivo.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+}
