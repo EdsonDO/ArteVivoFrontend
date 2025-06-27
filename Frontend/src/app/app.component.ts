@@ -22,12 +22,4 @@ export class AppComponent {
   }
   mostrarFormularioReservar = false;
 
-abrirFormularioReservar() {
-  this.mostrarFormularioReservar = true;
-}
-
-cerrarFormularioReservar() {
-  this.mostrarFormularioReservar = false;
-}
-
 }
