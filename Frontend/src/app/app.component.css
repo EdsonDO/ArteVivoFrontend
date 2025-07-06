@@ -1,14 +1,54 @@
 
-.body{
+.footer {
+font-size: 20px;
+font-family: 'JetBrains Mono', monospace;
+color: #000000;
+}
+
+.body {
   display: flex;
   flex-direction: row;
-  height: 100%;
+  height: 100%; /* Ocupa la altura completa del :host */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 1.5rem;
+  box-sizing: border-box;
+  gap: 1.5rem;
 }
+
+
+.content {
+  flex-grow: 1;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  min-width: 0;
+}
+
+:host {
+display: block;
+min-height: 100vh;
+background-image: url('/BackgroundArtevivo.png');
+background-size: cover;
+background-repeat: no-repeat;
+background-position: center;
+
+}
+
+.footer {
+  text-align: center;
+  padding: 1rem;
+  color: rgb(0, 0, 0);
+}
+
+
+
 
 .part1 {
   display: flex;
   width: 20vw;
-  height: 100vh;
+  height: 100%;
   flex-direction: column;
 }
 
@@ -33,18 +73,18 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  gap: 17px; 
+  gap: 17px;
   margin: 0px 5px 0px 5px;
   padding: 5%;
   height: 100%;
-  overflow-y: auto; 
+  overflow-y: auto;
 }
 
 
 .B-Redirec {
   display: flex;
   flex-direction: column;
-  gap: 20px; 
+  gap: 20px;
   padding: 10px 13px 10px 13px;
 }
 
@@ -53,8 +93,8 @@
   color: #FFFFFF;
   font-family: 'JetBrains Mono', monospace;
   font-weight: 500;
-  font-size: 16px;
-  border-radius: 8px;
+  font-size: 20px;
+  border-radius: 25px;
   border: none;
   padding: 15px;
 }
@@ -126,16 +166,22 @@
 
 
 .part1 {
-  height: 100vh;
-  transition: all 0.4s ease;
-  overflow: hidden;
+  flex-shrink: 0; /* Evita que el menú se encoja */
+  width: 25vw;
+  max-width: 350px;
+  min-width: 250px; /* Un ancho mínimo para que no se encoja demasiado */
+  height: 100%;
+  display: flex;
+  position: relative;
+  transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), min-width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .part1.colapsado {
-  width: calc(60px * 1.5); 
-  transition: width 0.3s ease-in-out;
-  overflow: hidden;
+  width: 90px;
+  min-width: 90px; /* El ancho mínimo también se colapsa */
 }
+
+
 
 .toggle-button {
   position: relative;
@@ -145,7 +191,7 @@
   border-radius: 50%;
   width: 50px;
   height: 50px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -212,7 +258,7 @@
 
 
 .part1.colapsado {
-  width: calc(60px * 1.5); 
+  width: calc(60px * 1.5);
   transition: width 0.3s ease-in-out;
 }
 
@@ -221,18 +267,18 @@
   display: flex;
   flex-direction: column;
   align-items: top;
-  justify-content: center; 
-  height: 100%; 
-  gap: 20px; 
-  padding-top: 50px; 
+  justify-content: center;
+  height: 100%;
+  gap: 20px;
+  padding-top: 50px;
 }
 
 .mini-btn {
   gap: 17px;
-  width: 50px;
-  height: 50px;
+  width: 56px;
+  height: 56px;
   background-color: white;
-  border-radius: 12px;
+  border-radius: 50px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   display: flex;
   justify-content: center;
@@ -246,7 +292,7 @@
 }
 
 .mini-btn img {
-  width: 20px;
+  width: 17px;
   height: 20px;
   object-fit: cover;
 }
@@ -285,19 +331,18 @@
   }
 }
 .part1 {
+  flex-shrink: 0;
   display: flex;
+  width: 20vw;
   flex-direction: column;
-  justify-content: flex-start;
-  transition: all 0.3s ease;
-  padding: 1rem;
+  transition: width 0.3s ease-in-out;
+  position: relative;
+  z-index: 100;
 }
-
 
 .part1.colapsado {
-  justify-content: center;
-  align-items: center;
+  width: 90px;
 }
-
 
 .B-Redirec-compacto {
   display: flex;
@@ -311,25 +356,26 @@
   height: 40px;
   transition: transform 0.3s ease;
 }
+
 .menu-box {
-  background-image: url('/FondoMenu.png');
-  background-size: cover;                 
-  background-repeat: no-repeat;           
-  background-position: center;            
-  border-radius: 80px;                    
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); 
+  background-image: url('/FondoMenu2.png');
+  background-size: cover;
+  background-position: center;
+  border-radius: 50px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
   padding: 1rem;
-  height: 95%;
-  width: 100%;
-  transition: all 0.3s ease;
+  height: 800px;
+  width: 94%;
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
-  position: relative; 
+  position: relative;
 }
 
 
 .part1.colapsado .menu-box {
   width: 90%;
-  height: 90vh;
+  height: 480px;
   padding: 10px;
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(0, 0, 0, 0.08);
@@ -340,11 +386,14 @@
 .menu-box.expanded .Logo,
 .menu-box.expanded .B-Redirec,
 .menu-box.expanded .B-Salir {
-  margin-top: 69px;        
+  margin-top: 69px;
 }
 
 .B-Salir {
-  margin-top: auto; 
+  margin-top: auto;
   padding: 1px 0.001px;
+}
+:host {
+  display: block; 
 }
 

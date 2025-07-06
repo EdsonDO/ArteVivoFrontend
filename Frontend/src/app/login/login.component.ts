@@ -1,29 +1,22 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
   standalone: false,
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css',
-  providers: [AuthService]
+  styleUrl: './login.component.css'
 })
 export class LoginComponent {
-
-  constructor(private inicioSesion: AuthService) {}
-
-  username: string = '';
+  identifier: string = '';
   password: string = '';
-  error = '';
 
-  rememberMe: boolean = false;
+  constructor(private router: Router) {}
 
   login() {
-    this.inicioSesion.login(this.username, this.password);
-  }
+    console.log('Loggeado...', this.identifier, this.password);
 
-  ngOnInit(){
+    // Redirige siempre al inicio (ruta por defecto)
+    this.router.navigate(['/inicio']);
   }
-
 }

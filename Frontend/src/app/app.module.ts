@@ -1,33 +1,41 @@
-import { TokenInterceptor } from '../services/token.interceptor';
+
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // Para las animaciones
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'; // <-- ¡MUY IMPORTANTE!
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FormsModule } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
-import { LoginComponent } from './login/login.component';
+import { InicioComponent } from './inicio/inicio.component';
 import { ReservarComponent } from './reservar/reservar.component';
 import { ReservasComponent } from './reservas/reservas.component';
-import { InicioComponent } from './inicio/inicio.component';
 import { CuentaComponent } from './cuenta/cuenta.component';
+import { LoginComponent } from './login/login.component';
+import { RegistroComponent } from './registro/registro.component';
+import { TokenInterceptor } from '../services/token.interceptor';
+
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
+    InicioComponent,
     ReservarComponent,
     ReservasComponent,
-    InicioComponent,
-    CuentaComponent
+    CuentaComponent,
+    LoginComponent,
+    RegistroComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
+    BrowserAnimationsModule,
+    HttpClientModule, // <-- ¡DEBE ESTAR AQUÍ!
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [{provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi:true},],
+  providers: [
+    // Registramos el TokenInterceptor para que funcione en toda la app
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

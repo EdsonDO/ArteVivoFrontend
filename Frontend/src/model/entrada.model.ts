@@ -7,7 +7,7 @@ export interface Entrada {
   usuario: Usuario;
   evento: Evento;
   asiento: Asiento | null;
-  codigo_qr: string;  // ruta imagen QR
+  codigo_qr: string;
   fecha_compra: string;
-  estado: string;     // pagado
+  estado: string;
 }

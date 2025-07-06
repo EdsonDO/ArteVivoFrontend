@@ -1,0 +1,200 @@
+/* --- NUEVO: Contenedor principal que organiza el layout --- */
+.page-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2rem;
+  padding: 2rem;
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* --- NUEVO: Contenedor para el formulario principal --- */
+/* Controla el tamaño y la animación de desaparición del formulario */
+.form-wrapper {
+  width: 100%;
+  max-width: 500px;
+  z-index: 10; /* El formulario siempre está por encima de las tarjetas */
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+/* Clase que se aplica para ocultar el formulario al final */
+.form-wrapper.finalizado {
+  transform: scale(0.95);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* --- TUS ESTILOS PARA EL FORMULARIO (Integrados) --- */
+.formulario-reserva {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 15px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+}
+
+.formulario-reserva h2 {
+  text-align: center;
+  font-family: 'JetBrains Mono', monospace;
+  color: #2b2930;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+.formulario-reserva p {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #666;
+}
+
+fieldset {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+legend {
+  padding: 0 0.5rem;
+  font-weight: bold;
+  color: #333;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+label {
+  display: block;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 600;
+  color: #333;
+}
+
+input[type="text"], select {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1rem;
+  box-sizing: border-box;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input[type="text"]:focus, select:focus {
+  outline: none;
+  border-color: #2b2930;
+  box-shadow: 0 0 5px rgba(43, 41, 48, 0.3);
+}
+
+.campos-tarjeta { margin-top: 1rem; }
+.fila-flex { display: flex; gap: 1rem; }
+.fila-flex > div { flex: 1; }
+
+.resumen-compra {
+  border-top: 2px dashed #ccc;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+}
+.resumen-compra h3 { margin-top: 0; text-align: center; }
+.resumen-compra .total { font-size: 1.2rem; font-weight: bold; text-align: right; }
+
+button[type="submit"] {
+  width: 100%;
+  padding: 15px;
+  margin-top: 1.5rem;
+  background: #2b2930;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-family: 'JetBrains Mono', monospace;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+button[type="submit"]:hover:not(:disabled) {
+  background: #444;
+  transform: translateY(-2px);
+}
+button[type="submit"]:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* --- NUEVO: Contenedores para las tarjetas laterales --- */
+.info-card-wrapper {
+  width: 100%;
+  max-width: 350px;
+  padding-top: 5rem; /* Empuja las tarjetas hacia abajo para que aparezcan "detrás" */
+}
+
+/* --- NUEVO: Estilos base para las tarjetas animadas --- */
+.info-card {
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  overflow: hidden;
+}
+
+.evento-card { text-align: center; }
+.evento-imagen { width: 100%; height: 200px; object-fit: cover; }
+.evento-info { padding: 1.5rem; }
+.evento-info h3 { margin: 0 0 0.5rem; }
+.evento-info p { margin: 0; color: #666; }
+
+.detalles-card { padding: 1.5rem; background-color: #f9f9f9; }
+.detalles-card h4 { margin-top: 0; }
+.detalles-card ul { list-style: none; padding: 0; margin: 0; }
+.detalles-card li { margin-bottom: 0.75rem; color: #444; }
+.detalles-card .precio {
+  font-weight: bold;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #eee;
+  font-size: 1.2rem;
+  color: #2b2930;
+}
+
+.loading-box {
+  background-color: white;
+  padding: 4rem 2.5rem;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.loading-box p { margin-top: 2rem; font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; color: #333; }
+.google-loader { width: 80px; height: 80px; animation: rotate-loader 2s linear infinite; }
+.loader-path { stroke-width: 8; stroke-linecap: round; fill: none; animation: color-loader 6s ease-in-out infinite, dash-loader 1.5s ease-in-out infinite; }
+@keyframes rotate-loader { 100% { transform: rotate(360deg); } }
+@keyframes dash-loader { 0% { stroke-dasharray: 1, 200; stroke-dashoffset: 0; } 50% { stroke-dasharray: 89, 200; stroke-dashoffset: -35px; } 100% { stroke-dasharray: 89, 200; stroke-dashoffset: -124px; } }
+@keyframes color-loader { 0%, 100% { stroke: #4285F4; } 25% { stroke: #DB4437; } 50% { stroke: #F4B400; } 75% { stroke: #0F9D58; } }
+
+.confirmacion-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  background: white;
+  padding: 3rem;
+  border-radius: 20px;
+  box-shadow: 0 15px 50px rgba(0,0,0,0.2);
+  z-index: 20;
+  width: 100%;
+  max-width: 550px;
+  box-sizing: border-box;
+}
+.confirmacion-imagen { width: 100px; height: 100px; border-radius: 50%; margin-bottom: 1.5rem; }
+.confirmacion-container h2 { font-family: 'JetBrains Mono', monospace; color: #2b2930; margin-top: 0; margin-bottom: 0.5rem; font-size: 2rem; }
+.confirmacion-container .subtitulo { color: #555; font-size: 1.1rem; margin-top: 0; margin-bottom: 2rem; }
+.confirmacion-detalles { background-color: #f7f7f7; border-radius: 10px; padding: 1.5rem; margin-bottom: 2rem; text-align: left; width: 100%; border: 1px solid #eee; }
+.confirmacion-detalles p { margin: 0.5rem 0; font-size: 1rem; }
+.confirmacion-container .mensaje-final { color: #666; margin-bottom: 1rem; }
+.confirmacion-container button { width: 80%; padding: 15px; background: #2b2930; color: white; border: none; border-radius: 8px; font-size: 1.1rem; font-family: 'JetBrains Mono', monospace; cursor: pointer; transition: background-color 0.3s ease; }
+.confirmacion-container button:hover { background: #444; }
+.ticket-final { margin-top: 1.5rem; }
+.ticket-final img { display: block; margin: 1rem auto; border: 1px solid #eee; padding: 5px; border-radius: 5px; }
