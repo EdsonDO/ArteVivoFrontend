@@ -1,7 +1,7 @@
 export interface Lugar {
-  id: number;          // Django da ID auto
+  id: number;
   nombre: string;
-  tipo: string;        // estadio, teatro, etc.
+  tipo: string;
   direccion: string;
-  tiene_asientos: boolean;
+  tiene_asientos: boolean; // Corregido de numAsientos
 }

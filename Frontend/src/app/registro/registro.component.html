@@ -1,0 +1,38 @@
+<div class="registro-wrapper">
+  <div class="registro-box">
+    <div class="registro-container">
+      <h1>Bienvenido a <span class="brand">ArteVivo...</span></h1>
+      <p>Está a punto de registrar su cuenta.</p>
+
+      <form (ngSubmit)="register()" #loginForm="ngForm">
+        <label for="username">Usuario o Correo Electrónico</label>
+        <div class="input-group">
+          <i class="pi pi-user icon-left"></i>
+          <input type="username" name="username" id="username" [(ngModel)]="username" pInputText
+            placeholder="username" autocomplete="username" required />
+        </div>
+
+        <label for="password">Contraseña</label>
+        <div class="input-group">
+          <input type="password" name="password" id="password" [(ngModel)]="password" pInputText placeholder="Contraseña"
+            autocomplete="current-password" required />
+          <i class="pi pi-lock icon-right"></i>
+        </div>
+
+        <!-- <div class="options">
+          <p-checkbox name="rememberMe" binary="true" [(ngModel)]="rememberMe" inputId="rememberMe"></p-checkbox>
+          <label for="rememberMe">Recordar Contraseña</label>
+          <a class="forgot" href="#">Olvidé mi contraseña</a>
+        </div> -->
+
+        <button type="submit" pButton label="Iniciar Sesión" class="registro-button" [disabled]="!loginForm.valid"> Iniciar Sesión</button>
+      </form>
+
+      <p class="register">¿Te equivocaste y querías loggearte?, inicia sesión <a routerLink="/login"> aquí </a> . </p>
+    </div>
+     <div class="image-container">
+      <img src="/LogoSmall.png" alt="Loguito ArteVIVO" />
+    </div>
+
+  </div>
+</div>

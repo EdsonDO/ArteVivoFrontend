@@ -1,1 +1,107 @@
-<p>reservar works!</p>
+<!-- El contenedor principal que organiza todo en una fila -->
+<div class="page-container" *ngIf="!reservaConfirmada">
+
+  <!-- Columna 1: Tarjeta de Información del Evento (Aparece al seleccionar evento) -->
+  <div class="info-card-wrapper">
+    <div class="info-card evento-card" *ngIf="eventoSeleccionado" [@cardAnimation]>
+      <img [src]="eventoSeleccionado.imagen" alt="Imagen del evento" class="evento-imagen"
+           onerror="this.src='https://placehold.co/600x400/ccc/ffffff?text=Evento'">
+      <div class="evento-info">
+        <h3>{{ eventoSeleccionado.nombre }}</h3>
+        <p>{{ eventoSeleccionado.fecha_inicio | date:'fullDate' }} - {{ eventoSeleccionado.fecha_inicio | date:'shortTime' }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Columna 2: El Formulario Principal -->
+  <div class="form-wrapper">
+    <!-- VISTA DE CARGA (SPINNER) -->
+    <div *ngIf="estaCargando" class="loading-box">
+      <svg class="google-loader" viewBox="0 0 100 100">
+        <circle class="loader-path" cx="50" cy="50" r="45" />
+      </svg>
+      <p>Procesando tu reserva...</p>
+    </div>
+
+    <!-- VISTA DEL FORMULARIO -->
+    <div *ngIf="!estaCargando" class="formulario-reserva">
+      <h2>Reserva tu Entrada</h2>
+      <p>Completa los siguientes datos para asegurar tu lugar.</p>
+
+      <form (ngSubmit)="confirmarReserva()" #formReserva="ngForm">
+        <!-- SECCIÓN 1: SELECCIÓN DE EVENTO -->
+        <fieldset>
+          <legend>1. Elige tu Evento</legend>
+          <select name="eventoId" [(ngModel)]="reserva.eventoId" (ngModelChange)="onEventoChange($event)" required>
+            <option [ngValue]="null" disabled>-- Selecciona un evento --</option>
+            <option *ngFor="let evento of eventos" [value]="evento.id">{{ evento.nombre }}</option>
+          </select>
+        </fieldset>
+
+        <!-- SECCIÓN 2: SELECCIÓN DE ASIENTO (si aplica) -->
+        <fieldset *ngIf="eventoSeleccionado && eventoSeleccionado.tipo_entrada === 'numerado'">
+          <legend>2. Elige tu Asiento</legend>
+          <select name="asientoId" [(ngModel)]="reserva.asientoId" (ngModelChange)="onAsientoChange($event)" required>
+            <option [ngValue]="null" disabled>-- Selecciona un asiento --</option>
+            <option *ngFor="let asiento of asientosDisponibles" [value]="asiento.id">
+              {{ asiento.seccion }} - Fila {{ asiento.fila }}, N° {{ asiento.numero }} (S/ {{ asiento.precio }})
+            </option>
+          </select>
+        </fieldset>
+        
+        <!-- SECCIÓN 3: DATOS DE PAGO -->
+        <fieldset>
+          <legend>3. Realiza el Pago</legend>
+          <label for="pago">Método de pago:</label>
+          <select id="pago" name="metodoPago" [(ngModel)]="reserva.metodoPago" required>
+            <option value="tarjeta">Tarjeta de Crédito/Débito</option>
+            <option value="yape">Yape</option>
+            <option value="plin">Plin</option>
+          </select>
+          <div *ngIf="reserva.metodoPago === 'tarjeta'" class="campos-tarjeta">
+            <label for="nombreTitular">Nombre del Titular:</label>
+            <input type="text" id="nombreTitular" name="nombreTitular" [(ngModel)]="reserva.pago.nombreTitular" required>
+            <!-- ... resto de campos de tarjeta ... -->
+          </div>
+        </fieldset>
+
+        <button type="submit" [disabled]="!formReserva.form.valid">Confirmar Reserva</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Columna 3: Tarjeta de Detalles de Reserva (Aparece al seleccionar asiento) -->
+  <div class="info-card-wrapper">
+    <div class="info-card detalles-card" *ngIf="asientoSeleccionado && eventoSeleccionado" [@cardAnimation]>
+        <h4>Detalles de la Reserva</h4>
+        <ul>
+          <li><strong>Lugar:</strong> {{ eventoSeleccionado.lugar.nombre }}</li>
+          <li><strong>Sección:</strong> {{ asientoSeleccionado.seccion }}</li>
+          <li><strong>Asiento:</strong> Fila {{ asientoSeleccionado.fila }} - N° {{ asientoSeleccionado.numero }}</li>
+          <li><strong>Tipo:</strong> {{ asientoSeleccionado.tipo }}</li>
+          <li class="precio"><strong>Total:</strong> S/ {{ asientoSeleccionado.precio }}</li>
+        </ul>
+    </div>
+  </div>
+
+</div>
+
+<!-- VISTA FINAL: PANTALLA DE CONFIRMACIÓN CON QR -->
+<!-- Aparece cuando todo el proceso ha terminado -->
+<div class="confirmacion-container" *ngIf="reservaConfirmada" [@cardAnimation]>
+  <img class="confirmacion-imagen" src="/LogoConfirmacion.png" alt="Icono de confirmación"
+       onerror="this.src='https://placehold.co/100x100/4CAF50/FFFFFF?text=✓';">
+  <h2>¡Reserva Exitosa!</h2>
+  <p class="subtitulo">Gracias por reservar con ArteVivo.</p>
+  
+  <div class="ticket-final" *ngIf="datosEntradaFinal">
+    <p>Presenta este código en la entrada del evento.</p>
+    <img [src]="datosEntradaFinal.codigo_qr" alt="Código QR de tu entrada">
+    <div class="ticket-info">
+      <h3>{{ datosEntradaFinal.evento.nombre }}</h3>
+      <p *ngIf="datosEntradaFinal.asiento">Asiento: Fila {{ datosEntradaFinal.asiento.fila }} - N° {{ datosEntradaFinal.asiento.numero }}</p>
+    </div>
+  </div>
+
+  <button (click)="volverAlInicio()">Volver al Inicio</button>
+</div>

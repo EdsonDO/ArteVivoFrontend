@@ -1,9 +1,8 @@
-
-<!-- CONTENEDOR PRINCIPAL -->
+<!-- ==================== CONTENEDOR PRINCIPAL ==================== -->
 <div class="body">
 
-  <!-- MENÚ LATERAL -->
-  <div class="part1" [class.colapsado]="menuColapsado">
+  <!-- ==================== MENÚ LATERAL PARA LOGGEADOS ==================== -->
+  <div class="part1" [class.colapsado]="menuColapsado" *ngIf="!esLoginoRegistro()">
 
     <!-- CONTENEDOR DEL MENÚ -->
     <div class="menu-box" [class.expanded]="!menuColapsado">
@@ -21,18 +20,22 @@
         </div>
       </div>
 
-      <!-- BOTONES DE NAVEGACIÓN -->
+      <!-- BOTONES DE NAVEGACIÓN COMPLETOS -->
       <div class="Botones">
         <div class="B-Redirec" *ngIf="!menuColapsado">
           <button (click)="redireccionar('/inicio')">Inicio</button>
           <button (click)="redireccionar('/reservar')">Reservar</button>
           <button (click)="redireccionar('/reservas')">Reservas</button>
           <button (click)="redireccionar('/cuenta')">Cuenta</button>
+          
+          
+
+
           <button (click)="redireccionar('/login')">Salir</button>
         </div>
 
         <div class="B-Redirec-compacto" *ngIf="menuColapsado">
-          <div class="mini-btn" title="Inicio" (click)="redireccionar('/')">
+          <div class="mini-btn" title="Inicio" (click)="redireccionar('/inicio')">
             <img [class.spin]="menuColapsado" src="/LogoInicio.png" alt="Inicio" />
           </div>
           <div class="mini-btn" title="Reservar" (click)="redireccionar('/reservar')">
@@ -52,13 +55,22 @@
     </div>
   </div>
 
-  <!-- CONTENIDO PRINCIPAL -->
+  <!-- ==================== CONTENIDO PRINCIPAL ==================== -->
   <div class="content">
     <router-outlet></router-outlet>
   </div>
+
+
+ 
+
+
+<!-- ==================== FOOTER ==================== -->
+
 </div>
 
+
+<footer class="footer"> ArteVivo © 2025. Todos los derechos reservados. </footer>
 <!-- By Edson DO. -->
 
-
-<!-- Segunda corrección: Todo esto del appcomponent tiene que ir SOLO en un inicio, NO en el appcomponent. -->
+<!-- El código, está hecho por mi, pero tiene esta estructura porque le pedí a ChatGPT que reordenara mi código y así poder encontrar las cosas más rapido-->
+<!-- OpenAI que estás en el server... Encriptado sea tu api-token... -->

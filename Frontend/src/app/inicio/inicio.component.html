@@ -1,1 +1,71 @@
-<p>inicio works!</p>
+<div class="inicio-container">
+
+  <!-- ================================================== -->
+  <!-- SECCIÓN 1: CARRUSEL DE EVENTOS DESTACADOS          -->
+  <!-- ================================================== -->
+  <section class="carousel-section" *ngIf="eventosDestacados.length > 0">
+    <h2>No sabes a donde ir? Mira nuestros eventos destacados...</h2>
+    <div class="carousel-container">
+      <!-- El "track" que contiene todas las imágenes y se desliza -->
+      <div class="carousel-track" [style.transform]="'translateX(' + (-indiceDestacados * 50) + '%)'">
+        <!-- Este bucle crea una tarjeta por cada evento destacado del backend -->
+        <div class="carousel-item" *ngFor="let evento of eventosDestacados">
+          <img [src]="evento.imagen" [alt]="evento.nombre"
+               onerror="this.src='https://placehold.co/600x400/ccc/ffffff?text=Evento'">
+          <!-- El nombre del evento en la esquina inferior -->
+          <p class="item-title">{{ evento.nombre }}</p>
+        </div>
+      </div>
+
+      <!-- Botones de Navegación para el carrusel -->
+      <button class="nav-button prev" (click)="moverDestacados(-1)" [disabled]="indiceDestacados === 0">
+        &lt;
+      </button>
+      <button class="nav-button next" (click)="moverDestacados(1)" [disabled]="indiceDestacados >= eventosDestacados.length - 2">
+        &gt;
+      </button>
+    </div>
+  </section>
+
+  <!-- ================================================== -->
+  <!-- SECCIÓN 2: SLIDER DE CATEGORÍAS                    -->
+  <!-- ================================================== -->
+   <section class="category-section" *ngIf="categorias.length > 0">
+    <h2>De que tienes ganas hoy? Siempre hay algo que hacer...</h2>
+    <div class="category-slider-wrapper">
+
+      <div class="category-slider" #categorySlider>
+        <div class="category-card" *ngFor="let categoria of categorias"
+             [style.backgroundImage]="'url(' + categoria.imagen + ')'">
+          <div class="card-title">{{ categoria.nombre }}</div>
+        </div>
+      </div>
+   
+      <button class="nav-button prev category-nav" (click)="moverCategorias('prev')" [disabled]="isCatScrollAtStart">
+        &lt;
+      </button>
+      <button class="nav-button next category-nav" (click)="moverCategorias('next')" [disabled]="isCatScrollAtEnd">
+        &gt;
+      </button>
+    </div>
+  </section>
+
+  <!-- ================================================== -->
+  <!-- SECCIÓN 3: EVENTOS PROMOCIONADOS (ALEATORIOS)      -->
+  <!-- ================================================== -->
+  <section class="carousel-section" *ngIf="eventosPromocionados.length > 0">
+    <h2>Eventos cerca de ti...</h2>
+    <div class="carousel-container">
+      <!-- Este track no se mueve, simplemente muestra una cuadrícula -->
+      <div class="carousel-track">
+        <!-- Este bucle crea una tarjeta por cada uno de los 5 eventos promocionados aleatorios -->
+        <div class="carousel-item" *ngFor="let evento of eventosPromocionados">
+          <img [src]="evento.imagen" [alt]="evento.nombre"
+               onerror="this.src='https://placehold.co/600x400/ccc/ffffff?text=Evento'">
+          <p class="item-title">{{ evento.nombre }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
