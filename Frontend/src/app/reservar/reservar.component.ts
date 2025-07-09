@@ -28,8 +28,6 @@ export class ReservarComponent implements OnInit {
   // --- Listas de datos del backend ---
   eventos: Evento[] = [];
   asientosDisponibles: Asiento[] = [];
-
-  // --- Estado de la UI ---
   eventoSeleccionado: Evento | null = null;
   asientoSeleccionado: Asiento | null = null;
   reservaConfirmada = false;
@@ -48,7 +46,8 @@ export class ReservarComponent implements OnInit {
       cvv: ''
     }
   };
-
+ // --- Constructor y ciclo de vida ---
+ // Inyectamos los servicios necesarios para la navegación
   constructor(
     private eventoService: EventoService,
     private reservaService: ReservaService,
@@ -103,7 +102,7 @@ export class ReservarComponent implements OnInit {
       
       this.estaCargando = false;
       this.reservaConfirmada = true;
-    }, 2000);
+    }, 3500);
   }
 
   volverAlInicio(): void {

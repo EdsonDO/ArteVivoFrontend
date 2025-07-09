@@ -1,17 +1,42 @@
-
-.footer {
-font-size: 20px;
-font-family: 'JetBrains Mono', monospace;
-color: #000000;
+/* ======================================================
+   ESTRUCTURA GENERAL Y FONDO PRINCIPAL
+====================================================== */
+:host {
+  display: block;
+  height: 195vh;
+  overflow: hidden; 
+  background-image: url('/BackgroundArtevivo.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .body {
   display: flex;
   flex-direction: row;
-  height: 100%; /* Ocupa la altura completa del :host */
+  height: 100%;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  padding: 1.5rem;
+  box-sizing: border-box;
+  gap: 1.5rem;
+}
+
+
+
+
+.app-container {
+  display: flex;
+  flex-direction: column; 
+  height: 100%;
+}
+
+
+.main-content {
+  flex: 1; 
+  display: flex;
+  overflow: hidden;
   padding: 1.5rem;
   box-sizing: border-box;
   gap: 1.5rem;
@@ -26,30 +51,223 @@ color: #000000;
   min-width: 0;
 }
 
-:host {
-display: block;
-min-height: 100vh;
-background-image: url('/BackgroundArtevivo.png');
-background-size: cover;
-background-repeat: no-repeat;
-background-position: center;
 
-}
+/* ======================================================
+   FOOTER
+====================================================== */
 
 .footer {
-  text-align: center;
-  padding: 1rem;
-  color: rgb(0, 0, 0);
+  flex-shrink: 0;
+  padding: 0.5rem 0.25rem 0; 
+  position: relative;
+  color: #e0e0e0;
+  font-family: 'JetBrains Mono', monospace;
+  background-image: url('/FondoLogin.png');
+  background-size: 1000px;
+  background-color: #1a1a1a;
+}
+
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(15, 15, 15, 0.85);
+  z-index: 1;
+}
+
+.footer-content, .footer-bottom {
+  position: relative;
+  z-index: 2;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between; 
+  align-items: flex-start;
+  gap: 2rem;
+  padding-bottom: 1.5rem;
+}
+
+
+
+.footer-text-columns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  flex: 1;
+}
+
+.footer-column {
+  flex: 1;
+  min-width: 100px;
+}
+
+.footer-column h4 {
+  color: white;
+  font-size: 1.1rem; 
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #444;
+  padding-bottom: 0.5rem;
+}
+
+.footer-column ul li {
+  margin-bottom: 0.7rem; 
+}
+
+.footer-logo-area {
+  flex-shrink: 0;
+  width: 200px; 
+  height: 100px; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-logo-area img {
+  max-width: 100%;
+  max-height: 100%;
+
+  object-fit: contain;
+}
+
+.footer-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-top: 1px solid #333;
+  font-size: 0.8rem;
+  color: #aaa;
 }
 
 
 
 
+.footer-column a {
+  color: #e0e0e0;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-column a:hover {
+  color: white;
+}
+
+.social-icons {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.social-icons svg {
+  width: 24px; 
+  height: 24px;
+  fill: #e0e0e0;
+}
+
+.footer-note {
+  font-size: 0.75rem; 
+  color: #888;
+  max-width: 300px;
+}
+
+.libro-reclamaciones img {
+  width: 22px;
+  height: 22px;
+  filter: invert(1);
+}
+
+.footer-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 0; 
+  border-top: 1px solid #333;
+  font-size: 0.8rem;
+  color: #aaa;
+}
+
+.legal-links a {
+  color: #aaa;
+  text-decoration: none;
+  margin-left: 1.5rem;
+  transition: color 0.3s ease;
+}
+
+.legal-links a:hover {
+  color: white;
+}
+
+
+/* ======================================================
+   MENÚ LATERAL
+====================================================== */
+
 .part1 {
+  flex-shrink: 0;
   display: flex;
   width: 20vw;
-  height: 100%;
   flex-direction: column;
+  height: 100%;
+  position: relative;
+  transition: width 0.3s ease-in-out;
+  z-index: 100;
+}
+
+.part1.colapsado {
+  width: 90px;
+  min-width: 90px;
+}
+
+.part1 {
+  flex-shrink: 0;
+  width: 17vw;
+  max-width: 250px;
+  min-width: 250px;
+  transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), min-width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.part1.colapsado {
+  width: calc(60px * 1.5);
+  transition: width 0.3s ease-in-out;
+}
+
+.menu-box {
+  background-image: url('/FondoMenu2.png');
+  background-size: cover;
+  background-position: center;
+  border-radius: 50px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  padding: 0.7rem;
+  height: 500px;
+  width: 94%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+
+.part1.colapsado .menu-box {
+  width: 69%;
+  height: 410px;
+  padding: 10px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.menu-box.expanded .Logo,
+.menu-box.expanded .B-Redirec,
+.menu-box.expanded .B-Salir {
+  margin-top: 35px;
 }
 
 .Logo {
@@ -75,45 +293,71 @@ background-position: center;
   justify-content: flex-start;
   gap: 17px;
   margin: 0px 5px 0px 5px;
-  padding: 5%;
+  padding: 1%;
   height: 100%;
   overflow-y: auto;
 }
 
 
+/* ======================================================
+   BOTONES MENÚ
+====================================================== */
+
 .B-Redirec {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  padding: 10px 13px 10px 13px;
+  gap: 10px;
+  padding: 8px 6px 8px 6px;
 }
 
-.B-Redirec button{
+.B-Redirec button {
   background-color: #2b2930;
   color: #FFFFFF;
   font-family: 'JetBrains Mono', monospace;
   font-weight: 500;
-  font-size: 20px;
+  font-size: 16px;
   border-radius: 25px;
   border: none;
   padding: 15px;
 }
 
-.B-Redirec button:hover{
+.B-Redirec button:hover {
   background-color: #565659;
 }
 
-.B-Redirec button:focus{
+.B-Redirec button:focus {
   background-color: #37373a;
 }
 
-.B-Salir{
+.B-Redirec-compacto {
+  display: flex;
+  flex-direction: column;
+  align-items: top;
+  justify-content: center;
+  height: 100%;
+  gap: 20px;
+  padding-top: 50px;
+}
+
+.B-Redirec-compacto {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.B-Salir {
   display: flex;
   flex-direction: column;
   padding: 10px 13px 10px 13px;
+  margin-top: auto;
 }
 
-.B-Salir button{
+.B-Salir {
+  margin-top: auto;
+  padding: 1px 0.001px;
+}
+
+.B-Salir button {
   background-color: #2b2930;
   color: #FFFFFF;
   font-family: 'JetBrains Mono', monospace;
@@ -124,15 +368,48 @@ background-position: center;
   padding: 15px;
 }
 
-.B-Salir button:hover{
+.B-Salir button:hover {
   background-color: #565659;
 }
 
-.B-Salir button:focus{
+.B-Salir button:focus {
   background-color: #444444;
 }
 
+.mini-btn {
+  gap: 15px;
+  width: 47px;
+  height: 47px;
+  background-color: white;
+  border-radius: 50px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.2s;
+  cursor: pointer;
+}
 
+.mini-btn:hover {
+  transform: scale(1.05);
+}
+
+.mini-btn img {
+  width: 20px;
+  height: 20px;
+  object-fit: cover;
+}
+
+.mini-btn img {
+  width: 31px;
+  height: 31px;
+  transition: transform 0.3s ease;
+}
+
+
+/* ======================================================
+   BOTÓN TOGGLE
+====================================================== */
 
 .toggle-button {
   position: absolute;
@@ -142,6 +419,23 @@ background-position: center;
   border-radius: 50%;
   width: 45px;
   height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 1000;
+  transition: background-color 0.3s ease;
+}
+
+.toggle-button {
+  position: relative;
+  top: 15px;
+  left: 15px;
+  background-color: #2b2930;
+  border-radius: 50%;
+  width: 35px;
+  height: 45px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -160,58 +454,13 @@ background-position: center;
   transition: transform 0.3s ease;
 }
 
-.toggle-button:hover img {
-  transform: rotate(180deg);
-}
-
-
-.part1 {
-  flex-shrink: 0; /* Evita que el menú se encoja */
-  width: 25vw;
-  max-width: 350px;
-  min-width: 250px; /* Un ancho mínimo para que no se encoja demasiado */
-  height: 100%;
-  display: flex;
-  position: relative;
-  transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), min-width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-}
-
-.part1.colapsado {
-  width: 90px;
-  min-width: 90px; /* El ancho mínimo también se colapsa */
-}
-
-
-
-.toggle-button {
-  position: relative;
-  top: 15px;
-  left: 15px;
-  background-color: #2b2930;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  z-index: 1000;
-  transition: background-color 0.3s ease;
-}
-
-
-.toggle-button:hover {
-  background-color: #37373a;
-}
 .toggle-button img.logo {
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
   opacity: 1;
   transform: rotate(0deg);
   transition: transform 0.5s ease, opacity 0.3s ease;
 }
-
 
 .toggle-button .menu-lines {
   position: absolute;
@@ -241,7 +490,6 @@ background-position: center;
   bottom: -6px;
 }
 
-
 .toggle-button.show-lines img.logo {
   opacity: 0;
   transform: rotate(180deg);
@@ -251,62 +499,23 @@ background-position: center;
   opacity: 1;
 }
 
-
 .toggle-button:not(.show-lines) .menu-lines {
   opacity: 0;
 }
-
-
-.part1.colapsado {
-  width: calc(60px * 1.5);
-  transition: width 0.3s ease-in-out;
-}
-
-
-.B-Redirec-compacto {
-  display: flex;
-  flex-direction: column;
-  align-items: top;
-  justify-content: center;
-  height: 100%;
-  gap: 20px;
-  padding-top: 50px;
-}
-
-.mini-btn {
-  gap: 17px;
-  width: 56px;
-  height: 56px;
-  background-color: white;
-  border-radius: 50px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: transform 0.2s;
-  cursor: pointer;
-}
-
-.mini-btn:hover {
-  transform: scale(1.05);
-}
-
-.mini-btn img {
-  width: 17px;
-  height: 20px;
-  object-fit: cover;
-}
-
 
 .toggle-button.rotado img {
   transform: rotate(180deg);
   transition: transform 0.4s ease;
 }
 
-
 .toggle-button img {
   transition: transform 0.4s ease;
 }
+
+
+/* ======================================================
+   ANIMACIONES
+====================================================== */
 
 .rotar-icono {
   animation: girarIcono 0.4s ease;
@@ -316,6 +525,7 @@ background-position: center;
   from { transform: rotate(0deg); }
   to   { transform: rotate(180deg); }
 }
+
 .fade-in-out {
   animation: fade 0.4s ease-in-out;
 }
@@ -330,70 +540,3 @@ background-position: center;
     transform: translateX(0);
   }
 }
-.part1 {
-  flex-shrink: 0;
-  display: flex;
-  width: 20vw;
-  flex-direction: column;
-  transition: width 0.3s ease-in-out;
-  position: relative;
-  z-index: 100;
-}
-
-.part1.colapsado {
-  width: 90px;
-}
-
-.B-Redirec-compacto {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-
-.mini-btn img {
-  width: 40px;
-  height: 40px;
-  transition: transform 0.3s ease;
-}
-
-.menu-box {
-  background-image: url('/FondoMenu2.png');
-  background-size: cover;
-  background-position: center;
-  border-radius: 50px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
-  padding: 1rem;
-  height: 800px;
-  width: 94%;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  position: relative;
-}
-
-
-.part1.colapsado .menu-box {
-  width: 90%;
-  height: 480px;
-  padding: 10px;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(0, 0, 0, 0.08);
-}
-
-
-
-.menu-box.expanded .Logo,
-.menu-box.expanded .B-Redirec,
-.menu-box.expanded .B-Salir {
-  margin-top: 69px;
-}
-
-.B-Salir {
-  margin-top: auto;
-  padding: 1px 0.001px;
-}
-:host {
-  display: block; 
-}
-

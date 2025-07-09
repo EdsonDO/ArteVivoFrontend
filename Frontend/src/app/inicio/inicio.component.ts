@@ -14,17 +14,12 @@ import { Categoria } from '@models/categoria.model';
 })
 export class InicioComponent implements OnInit, OnDestroy, AfterViewInit {
 
-  // Propiedades para los datos del backend
   eventosDestacados: Evento[] = [];
   categorias: Categoria[] = [];
   eventosPromocionados: Evento[] = [];
-
-  // Propiedades para los carruseles de eventos
   indiceDestacados = 0;
   indiceCercanos = 0;
   private autoplayInterval: any;
-
-  // Lógica para el slider de categorías
   @ViewChild('categorySlider') categorySlider!: ElementRef<HTMLDivElement>;
   isCatScrollAtStart = true;
   isCatScrollAtEnd = false;
@@ -105,7 +100,6 @@ export class InicioComponent implements OnInit, OnDestroy, AfterViewInit {
     this.isCatScrollAtEnd = slider.scrollWidth - slider.scrollLeft - slider.clientWidth < 1;
   }
 
-  // --- Lógica existente para los otros carruseles ---
   moverDestacados(direccion: number): void {
     const nuevoIndice = this.indiceDestacados + direccion;
     if (nuevoIndice >= 0 && nuevoIndice <= this.eventosDestacados.length - 2) {

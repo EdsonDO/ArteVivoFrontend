@@ -28,13 +28,12 @@ import { TokenInterceptor } from '../services/token.interceptor';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    HttpClientModule, // <-- ¡DEBE ESTAR AQUÍ!
+    HttpClientModule, 
     FormsModule,
     ReactiveFormsModule
   ],
   providers: [
-    // Registramos el TokenInterceptor para que funcione en toda la app
-    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }
+   { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

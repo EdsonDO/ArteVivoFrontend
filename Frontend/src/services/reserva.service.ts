@@ -13,15 +13,12 @@ export class ReservaService {
 
   // Obtiene los asientos disponibles para un LUGAR específico
   getAsientosPorLugar(lugarId: number): Observable<Asiento[]> {
-    // Asumimos un endpoint que filtra asientos por lugar
+
     return this.http.get<Asiento[]>(`${this.apiUrl}/asientos/?lugar=${lugarId}&disponible=true`);
   }
 
   // Realiza la reserva final
   crearReserva(datosReserva: any): Observable<any> {
-    // Esta es una simulación. Necesitarías un endpoint como /api/reservar/
-    // que maneje la creación de la Entrada y el Pago en una sola transacción.
-    // Por ahora, lo apuntaremos a /api/entradas/ para el ejemplo.
     return this.http.post<any>(`${this.apiUrl}/entradas/`, datosReserva);
   }
 }
