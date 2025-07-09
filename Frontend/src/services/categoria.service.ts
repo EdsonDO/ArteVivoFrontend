@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Categoria } from '../model/categoria.model'; // Importa la interfaz correcta
+import { Categoria } from '../model/categoria.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategoriaService {
-  // La URL base que apunta específicamente al endpoint de categorías en la API
   private apiUrl = 'http://127.0.0.1:8000/api/categorias/';
 
   constructor(private http: HttpClient) { }

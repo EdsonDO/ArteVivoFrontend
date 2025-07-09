@@ -12,7 +12,6 @@ export class AppComponent {
   title = 'Frontend';
   menuColapsado = false;
 
-  // 🟢 NUEVAS PROPIEDADES
   mostrarCuadro = false;
   cuadroContenido = '';
 
@@ -33,7 +32,6 @@ export class AppComponent {
           this.backgroundClass = '';
         }
 
-        // 🟢 OCULTA EL CUADRO cuando navegas a inicio o login
         if (event.url.includes('inicio') || event.url.includes('login')) {
           this.mostrarCuadro = false;
           this.cuadroContenido = '';
@@ -43,7 +41,6 @@ export class AppComponent {
   }
 
   redireccionar(url: string) {
-    // Si es inicio o login → navega normal, sin cuadro
     if (url === '/inicio' || url === '/login') {
       this.mostrarCuadro = false;
       this.cuadroContenido = '';
@@ -51,7 +48,6 @@ export class AppComponent {
       return;
     }
 
-    // Si es reservar → activa formulario
     if (url === '/reservar') {
       this.cuadroContenido = 'formulario';
     } else if (url === '/reservas') {
@@ -60,13 +56,12 @@ export class AppComponent {
       this.cuadroContenido = '';
     }
 
-    // Reinicia animación
+
     this.mostrarCuadro = false;
     setTimeout(() => {
       this.mostrarCuadro = true;
     }, 10);
 
-    // Navega igual (si quieres que NO cambie ruta, comenta esto)
     this.router.navigate([url]);
   }
 
